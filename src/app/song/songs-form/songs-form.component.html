@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+<div class="sales-boxes">
+    <div class="recent-sales box">
+
+        <div class="admin-page">
+            <p-card [header]="editmode ? 'Edit Song':'Add Song'" subheader="You can add or edit songs here">
+                <div class="grid mb-5">
+                    <div class="col-md-12">
+                        <p-toolbar>
+                            <div class="p-toolbar-group-left"></div>
+                            <div class="p-toolbar-group-right">
+                                <p-button styleClass="p-button-primary m-1" [label]="editmode ? 'Update':'Create'"
+                                    icon="pi pi-plus" (click)="onSubmit()">
+                                </p-button>
+                                <p-button styleClass="p-button-secondary" label="Cancel" icon="pi pi-arrow-circle-left"
+                                    (click)="onCancle()">
+                                </p-button>
+                            </div>
+                        </p-toolbar>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-md-12">
+                        <form [formGroup]="songForm">
+                            <div class="p-fluid p-formgrid grid">
+                                <div class="row">
+                                    <div class="p-field col-md-4">
+                                        <label for="name" class="fw-bold">Title</label>
+                                        <input formControlName='title' id="title" type="text" pInputText>
+                                        <small *ngIf="songFormError['title'].invalid && isSubmitted"
+                                            class="p-error">Title is
+                                            required</small>
+                                    </div>
+                                    <div class="p-field col-md-4">
+                                        <label for="category" class="fw-bold">Album</label><br />
+                                        <p-dropdown [options]="albums" formControlName="album" optionLabel="name"
+                                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                                            placeholder="Select a Category"></p-dropdown>
+                                        <small *ngIf="songFormError['album'].invalid && isSubmitted"
+                                            class="p-error">Album
+                                            is
+                                            required</small>
+                                    </div>
+                                    <div class="p-field col-md-4">
+                                        <label for="category" class="fw-bold">Artist</label><br />
+                                        <p-dropdown [options]="artists" formControlName="artist" optionLabel="name"
+                                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                                            placeholder="Select a artist"></p-dropdown>
+                                        <small *ngIf="songFormError['artist'].invalid && isSubmitted"
+                                            class="p-error">Artist
+                                            is
+                                            required</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-fluid p-formgrid grid">
+                                <div class="row">
+                                    <div class="p-field col-md-4 mt-3 d-flex">
+                                        <label for="name" class="fw-bold m-1">Is Featured</label>
+                                        <p-inputSwitch formControlName='isFeatured'></p-inputSwitch>
+                                        <!-- <small *ngIf="songFormError['isFeatured'].invalid && isSubmitted"
+                                            class="p-error">isFeatured is
+                                            required</small> -->
+                                    </div>
+                                    <div class="p-field col-md-4 p-2">
+                                        <label for="icon" class="fw-bold">Upload Date</label>
+                                        <p-calendar formControlName="uploadedDate" [showIcon]="true" inputId="icon">
+                                        </p-calendar>
+                                        <small *ngIf="songFormError['uploadedDate'].invalid && isSubmitted"
+                                            class="p-error">
+                                            Upload Date is required
+                                        </small>
+                                    </div>
+                                    <div class="p-field col-md-4 p-3">
+                                        <label for="name" class="fw-bold">Song Audio</label>
+                                        <input type="file" class="p-inputtext" accept="mpeg/*"
+                                            (change)="onAudioUpload($event)">
+                                        <div *ngIf="uploadAudio">{{ uploadAudio | async }} %</div>
+                                        <!-- <small *ngIf="songFormError['artist'].invalid && isSubmitted"
+                                            class="p-error">Artist
+                                            is
+                                            required</small> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-fluid p-formgrid grid">
+                                <div class="row">
+                                    <div class="p-field col-md-4 p-2">
+                                        <label for="name" class="fw-bold">Song CoverImage</label>
+                                        <input type="file" class="p-inputtext" accept="image/*"
+                                            (change)="onImageUpload($event)">
+                                        <div *ngIf="uploadImage">{{ uploadImage | async }} %</div>
+                                        <div class="p-col-2 mt-2 p-pl-0">
+                                            <img style="width: 100%" [src]="imageDisplay" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "sk-music-admin",
+    "public": "dist/music-admin",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

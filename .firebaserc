@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "music-player-34dbe"
+  },
+  "targets": {
+    "music-player-34dbe": {
+      "hosting": {
+        "sk-music-admin": [
+          "sk-music-admin"
+        ]
+      }
+    }
+  }
+}
